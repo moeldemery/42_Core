@@ -11,26 +11,26 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void ft_sa(t_list **stack_a)
+void	ft_sa(t_list **stack_a)
 {
-    ft_stack_swap(stack_a);
-    ft_printf("sa\n");
+	ft_stack_swap(stack_a);
+	ft_printf("sa\n");
 }
 
-void ft_pa(t_list **stack_a, t_list **stack_b)
+void	ft_pa(t_list **stack_a, t_list **stack_b)
 {
-    ft_stack_push(stack_b, stack_a);
-    ft_printf("pa\n");
+	ft_stack_push(stack_b, stack_a);
+	ft_printf("pa\n");
 }
 
-void ft_ra(t_list **stack_a)
+void	ft_ra(t_list **stack_a)
 {
-    ft_stack_rotate(stack_a);
-    ft_printf("ra\n");
+	ft_stack_rotate(stack_a);
+	ft_printf("ra\n");
 }
 
-void ft_rra(t_list **stack_a)
+void	ft_rra(t_list **stack_a)
 {
-    ft_stack_reverse_rotate(stack_a);
-    ft_printf("rra\n");
+	ft_stack_reverse_rotate(stack_a);
+	ft_printf("rra\n");
 }

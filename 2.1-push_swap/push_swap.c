@@ -74,6 +74,12 @@ int main(int argc, char **argv)
         ft_printf("Stack A: "); ft_list_print(stack_a);
         ft_printf("Stack B: "); ft_list_print(stack_b);
         #endif
+        ft_sort_stack(&stack_a, &stack_b);
+        #if DEBUG
+        ft_printf("After Sorting:\n");
+        ft_printf("Stack A: "); ft_list_print(stack_a);
+        ft_printf("Stack B: "); ft_list_print(stack_b);
+        #endif
     }
     else
         ft_printf("Error\n");

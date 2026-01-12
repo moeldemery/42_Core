@@ -12,23 +12,23 @@
 
 #include "push_swap.h"
 
-void    ft_ss(t_list **stack_a, t_list **stack_b)
+void	ft_ss(t_list **stack_a, t_list **stack_b)
 {
-    ft_stack_swap(stack_a);
-    ft_stack_swap(stack_b);
-    ft_printf("ss\n");
+	ft_stack_swap(stack_a);
+	ft_stack_swap(stack_b);
+	ft_printf("ss\n");
 }
 
-void   ft_rr(t_list **stack_a, t_list **stack_b)
+void	ft_rr(t_list **stack_a, t_list **stack_b)
 {
-    ft_stack_rotate(stack_a);
-    ft_stack_rotate(stack_b);
-    ft_printf("rr\n");
+	ft_stack_rotate(stack_a);
+	ft_stack_rotate(stack_b);
+	ft_printf("rr\n");
 }
 
-void    ft_rrr(t_list **stack_a, t_list **stack_b)
+void	ft_rrr(t_list **stack_a, t_list **stack_b)
 {
-    ft_stack_reverse_rotate(stack_a);
-    ft_stack_reverse_rotate(stack_b);
-    ft_printf("rrr\n");
+	ft_stack_reverse_rotate(stack_a);
+	ft_stack_reverse_rotate(stack_b);
+	ft_printf("rrr\n");
 }
