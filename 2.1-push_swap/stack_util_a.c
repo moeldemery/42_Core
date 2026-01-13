@@ -12,9 +12,9 @@
 
 #include "push_swap.h"
 
-int ft_is_sorted(t_list *stack)
+int ft_is_sorted(td_list *stack)
 {
-    t_list *current;
+    td_list *current;
 
     current = stack;
     while (current && current->next)
@@ -26,9 +26,9 @@ int ft_is_sorted(t_list *stack)
     return (1);
 }
 
-int ft_find_min(t_list *stack)
+int ft_find_min(td_list *stack)
 {
-    t_list *temp;
+    td_list *temp;
     int index;
     int min;
     int pos;
@@ -52,9 +52,9 @@ int ft_find_min(t_list *stack)
     return (pos);
 }
 
-int ft_find_max(t_list *stack)
+int ft_find_max(td_list *stack)
 {
-    t_list *temp;
+    td_list *temp;
     int index;
     int max;
     int pos;

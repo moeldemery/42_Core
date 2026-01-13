@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	ft_sort_three(t_list **stack)
+void	ft_sort_three(td_list **stack)
 {
 	int	first;
 	int	second;
@@ -39,7 +39,7 @@ void	ft_sort_three(t_list **stack)
 		ft_ra(stack); // ra
 }
 
-void	ft_sort_four(t_list **stack_a, t_list **stack_b)
+void	ft_sort_four(td_list **stack_a, td_list **stack_b)
 {
 	int	pos;
 
@@ -60,7 +60,7 @@ void	ft_sort_four(t_list **stack_a, t_list **stack_b)
 	ft_pa(stack_a, stack_b);
 }
 
-void	ft_sort_five(t_list **stack_a, t_list **stack_b)
+void	ft_sort_five(td_list **stack_a, td_list **stack_b)
 {
 	int	pos;
 
@@ -86,22 +86,22 @@ void	ft_sort_five(t_list **stack_a, t_list **stack_b)
 	ft_pa(stack_a, stack_b);
 }
 
-void	ft_sort_n(t_list **stack_a, t_list **stack_b, int size)
+void	ft_sort_n(td_list **stack_a, td_list **stack_b, int size)
 {
-    char *lis;
-
+    int *lis;
     lis = ft_find_lis(stack_a, size);
+	ft_printf("LIS array obtained.\n");
 	ft_push_non_lis(stack_a, stack_b, lis, size);
     //ft_sort_remaining(stack_a, stack_b);
     //ft_final_rotate(stack_a);
 
 }
 
-void	ft_sort_stack(t_list **stack_a, t_list **stack_b)
+void	ft_sort_stack(td_list **stack_a, td_list **stack_b)
 {
 	int	size;
 
-	size = ft_lstsize(*stack_a);
+	size = ft_lstd_size(*stack_a);
 	if (size <= 1 || ft_is_sorted(*stack_a))
 		return ;
 	else if (size == 2)

@@ -27,9 +27,9 @@ int ft_is_str_digit(char *str)
     return (1);
 }
 
-void ft_list_print(t_list *lst)
+void ft_list_print(td_list *lst)
 {
-    t_list *temp;
+    td_list *temp;
 
     temp = lst;
     while (temp)
@@ -43,8 +43,8 @@ void ft_list_print(t_list *lst)
 int main(int argc, char **argv)
 {
     int i;
-    t_list *stack_a;
-    t_list *stack_b;
+    td_list *stack_a;
+    td_list *stack_b;
     int num;
     void *content;
 
@@ -66,7 +66,7 @@ int main(int argc, char **argv)
                 num = ft_atoi(argv[i]);
                 content = malloc(sizeof(int));
                 *(int *)content = num;
-                ft_lstadd_back(&stack_a, ft_lstnew(content));
+                ft_lstd_add_back(&stack_a, ft_lstd_new(content));
             }
             i++;
         }

@@ -1,5 +1,5 @@
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = #-Wall -Wextra -Werror
 
 SRCS = 	stack_sort_algo.c \
 		stack_cmd_a.c  stack_cmd_b.c  stack_cmd_c.c \
@@ -14,8 +14,9 @@ LIBFT_LIB = libft/libft.a
 
 all: $(NAME)
 
-$(NAME): $(SRCS) $(LIBFT_LIB)
-	$(CC) $(CFLAGS)  $@.c $^ -o $@.o
+$(NAME): $(OBJS) $(libft)
+	make -C libft
+	$(CC) $(CFLAGS)  $@.c $^ $(LIBFT_LIB) -o $@.o
 
 
 %.o: %.c 

@@ -74,5 +74,17 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
-
+/*************** */
+typedef struct sd_list
+{
+	void			*content;
+	struct sd_list	*next;
+	struct sd_list	*prev;
+}	td_list;
+/*************** */
+td_list	*ft_lstd_new(void *content);
+void	ft_lstd_add_front(td_list **lst, td_list *new);
+int		ft_lstd_size(td_list *lst);
+td_list	*ft_lstd_last(td_list *lst);
+void	ft_lstd_add_back(td_list **lst, td_list *new);
 #endif

@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_cmd_a.c                                      :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meldemir <meldemir@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/10 23:16:02 by meldemir          #+#    #+#             */
-/*   Updated: 2026/01/10 23:16:03 by meldemir         ###   ########.fr       */
+/*   Created: 2026/01/09 15:36:21 by meldemir          #+#    #+#             */
+/*   Updated: 2026/01/09 15:36:22 by meldemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "push_swap.h"
+#include "libft.h"
 
-void	ft_sa(td_list **stack_a)
+void	ft_lstd_add_back(td_list **lst, td_list *new)
 {
-	ft_stack_swap(stack_a);
-	ft_printf("sa\n");
-}
+	td_list	*last;
 
-void	ft_pa(td_list **stack_a, td_list **stack_b)
-{
-	ft_stack_push(stack_b, stack_a);
-	ft_printf("pa\n");
-}
-
-void	ft_ra(td_list **stack_a)
-{
-	ft_stack_rotate(stack_a);
-	ft_printf("ra\n");
-}
-
-void	ft_rra(td_list **stack_a)
-{
-	ft_stack_reverse_rotate(stack_a);
-	ft_printf("rra\n");
+	if (lst == NULL || new == NULL)
+		return ;
+	if (*lst == NULL)
+	{
+		*lst = new;
+		return ;
+	}
+	last = ft_lstd_last(*lst);
+	last->next = new;
+	new->prev = last;
 }
