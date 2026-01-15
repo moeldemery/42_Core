@@ -14,29 +14,30 @@
 
 void	ft_sort_three(td_list **stack)
 {
-	int	first;
-	int	second;
-	int	third;
+	int			first;
+	int			second;
+	int			third;
+	t_element	*elem;
 
-	first = *(int *)(*stack)->content;
-	second = *(int *)(*stack)->next->content;
-	third = *(int *)(*stack)->next->next->content;
+	first = ((t_element *)(*stack)->content)->value;
+	second = ((t_element *)(*stack)->next->content)->value;
+	third = ((t_element *)(*stack)->next->next->content)->value;
 	if (first > second && second < third && first < third)
-		ft_sa(stack); // sa
+		ft_sa(stack);
 	else if (first > second && second > third)
 	{
-		ft_sa(stack);  // sa
-		ft_rra(stack); // rra
+		ft_sa(stack);
+		ft_rra(stack);
 	}
 	else if (first > second && second < third && first > third)
-		ft_rra(stack); // rra
+		ft_ra(stack);
 	else if (first < second && second > third && first < third)
 	{
-		ft_sa(stack); // sa
-		ft_ra(stack); // ra
+		ft_sa(stack);
+		ft_ra(stack);
 	}
 	else if (first < second && second > third && first > third)
-		ft_ra(stack); // ra
+		ft_ra(stack);
 }
 
 void	ft_sort_four(td_list **stack_a, td_list **stack_b)
@@ -45,7 +46,7 @@ void	ft_sort_four(td_list **stack_a, td_list **stack_b)
 
 	if (ft_is_sorted(*stack_a) == 1)
 		return ;
-	pos = ft_find_min(*stack_a);
+	pos = ft_find_min(*stack_a, DEBUG);
 	if (pos == 1)
 		ft_ra(stack_a);
 	else if (pos == 2)
@@ -66,7 +67,7 @@ void	ft_sort_five(td_list **stack_a, td_list **stack_b)
 
 	if (ft_is_sorted(*stack_a) == 1)
 		return ;
-	pos = ft_find_min(*stack_a);
+	pos = ft_find_min(*stack_a, DEBUG);
 	if (pos == 1)
 		ft_ra(stack_a);
 	else if (pos == 2)
@@ -88,22 +89,24 @@ void	ft_sort_five(td_list **stack_a, td_list **stack_b)
 
 void	ft_sort_n(td_list **stack_a, td_list **stack_b, int size)
 {
-    int *lis;
-    lis = ft_find_lis(stack_a, size);
-	ft_printf("LIS array obtained.\n");
-	ft_push_non_lis(stack_a, stack_b, lis, size);
-    //ft_sort_remaining(stack_a, stack_b);
-    //ft_final_rotate(stack_a);
+	int lis_len;
 
+	lis_len = ft_find_lis(stack_a, size);
+	ft_list_print_lismask(*stack_a, (int)DEBUG, "Final  LIS Mask:");
+	ft_push_non_lis(stack_a, stack_b, size,lis_len);
+	ft_list_print(*stack_a, (int)DEBUG, "LIS Stack A:");
+	ft_list_print(*stack_b, (int)DEBUG, "LIS Stack B:");
+	ft_sort_remaining(stack_a, stack_b);
+	ft_final_rotate(stack_a);
 }
 
-void	ft_sort_stack(td_list **stack_a, td_list **stack_b)
+int	ft_sort_stack(td_list **stack_a, td_list **stack_b)
 {
 	int	size;
 
 	size = ft_lstd_size(*stack_a);
 	if (size <= 1 || ft_is_sorted(*stack_a))
-		return ;
+		return (0);
 	else if (size == 2)
 	{
 		if (*(int *)(*stack_a)->content > *(int *)(*stack_a)->next->content)
@@ -112,16 +115,12 @@ void	ft_sort_stack(td_list **stack_a, td_list **stack_b)
 	else if (size == 3)
 		ft_sort_three(stack_a);
 	else if (size == 4)
-	{
 		ft_sort_four(stack_a, stack_b);
-	}
 	else if (size == 5)
-	{
 		ft_sort_five(stack_a, stack_b);
-	}
 	else
-	{
 		ft_sort_n(stack_a, stack_b, size);
-	}
-	// Further sorting algorithms for larger sizes can be implemented here
+	ft_list_print(*stack_a, (int)DEBUG, "Sorted Stack A:");
+	ft_list_print(*stack_b, (int)DEBUG, "Sorted Stack B:");
+	return (0);
 }

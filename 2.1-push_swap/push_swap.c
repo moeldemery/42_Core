@@ -11,77 +11,105 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-int ft_is_str_digit(char *str)
+int	ft_is_str_digit(char *str)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    if (str[i] == '-' || str[i] == '+')
-        i++;
-    while (str[i])
-    {
-        if (ft_isdigit(str[i]) == 0)
-            return (0);
-        i++;
-    }
-    return (1);
+	i = 0;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i])
+	{
+		if (ft_isdigit(str[i]) == 0)
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
-void ft_list_print(td_list *lst)
+t_element	*ft_init_element(int value)
 {
-    td_list *temp;
+	t_element	*element;
 
-    temp = lst;
-    while (temp)
-    {
-        ft_printf("%d\t", *(int *)temp->content);
-        temp = temp->next;
-    }
-    ft_printf("\n");
+	element = malloc(sizeof(t_element));
+	if (!element)
+		return (NULL);
+	element->value = value;
+	element->cost = 0;
+	element->lis_cost = 1;
+	element->lis_mask = 0;
+	return (element);
 }
 
-int main(int argc, char **argv)
+static int	ft_process_arg(char *arg, td_list **stack)
 {
-    int i;
-    td_list *stack_a;
-    td_list *stack_b;
-    int num;
-    void *content;
+	t_element	*element;
+	int			num;
 
-    stack_a = NULL;
-    stack_b = NULL;
+	if (ft_is_str_digit(arg) == 0)
+		return (0);
+	num = ft_atoi(arg);
+	element = ft_init_element(num);
+	ft_lstd_add_back(stack, ft_lstd_new(element));
+	return (1);
+}
 
-    i = 1;
-    if (argc > 1){
-        while (i < argc)
-        {
-            //ft_printf("Argv %s\n", argv[i]);
-            if (ft_is_str_digit(argv[i]) == 0)
-            {
-                ft_printf("Error1\n");
-                return (1);
-            }
-            else
-            {
-                num = ft_atoi(argv[i]);
-                content = malloc(sizeof(int));
-                *(int *)content = num;
-                ft_lstd_add_back(&stack_a, ft_lstd_new(content));
-            }
-            i++;
-        }
-        #if DEBUG
-        ft_printf("Stack A: "); ft_list_print(stack_a);
-        ft_printf("Stack B: "); ft_list_print(stack_b);
-        #endif
-        ft_sort_stack(&stack_a, &stack_b);
-        #if DEBUG
-        ft_printf("After Sorting:\n");
-        ft_printf("Stack A: "); ft_list_print(stack_a);
-        ft_printf("Stack B: "); ft_list_print(stack_b);
-        #endif
-    }
-    else
-        ft_printf("Error\n");
-    return (0);
+static int	ft_proccess_arg_split(char *arg, td_list **stack)
+{
+	t_element	*element;
+	int			num;
+	char		**args_split;
+	char		**args_ptr;
+
+	args_split = ft_split(arg, ' ');
+	if (!args_split)
+		return (ft_printf("Error\n") != 0);
+	args_ptr = args_split;
+	while (*args_split)
+	{
+		if (ft_is_str_digit(*args_split) == 0)
+		{
+			free(args_ptr);
+			return (ft_printf("Error\n") != 0);
+		}
+		num = ft_atoi(*args_split);
+		element = ft_init_element(num);
+		ft_lstd_add_back(stack, ft_lstd_new(element));
+		args_split++;
+	}
+	free(args_ptr);
+	return (1);
+}
+
+int	main(int argc, char **argv)
+{
+	td_list	*stack_a;
+	td_list	*stack_b;
+	int		i;
+
+	stack_a = NULL;
+	stack_b = NULL;
+	i = 1;
+	if (argc == 2)
+	{
+		if (!ft_proccess_arg_split(argv[1], &stack_a))
+			return (ft_printf("Error\n") != 0);
+		ft_list_print(stack_a, DEBUG, "Initial Stack A:");
+		ft_list_print(stack_b, DEBUG, "Initial Stack B:");
+		return (ft_sort_stack(&stack_a, &stack_b));
+	}
+	else if (argc > 2)
+	{
+		while (i < argc)
+		{
+			if (!ft_process_arg(argv[i], &stack_a))
+				return (ft_printf("Error\n") != 0);
+			i++;
+		}
+		ft_list_print(stack_a, DEBUG, "Initial Stack A:");
+		ft_list_print(stack_b, DEBUG, "Initial Stack B:");
+		return (ft_sort_stack(&stack_a, &stack_b));
+	}
+	else
+		return (ft_printf("Error\n") != 0);
 }

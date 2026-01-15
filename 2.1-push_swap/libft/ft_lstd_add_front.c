@@ -17,7 +17,6 @@ void	ft_lstd_add_front(td_list **lst, td_list *new)
 		return ;
 	new->next = *lst;
 	new->prev = NULL;
-	
 	if (*lst != NULL)
 		(*lst)->prev = new;
 	*lst = new;

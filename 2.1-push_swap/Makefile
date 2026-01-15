@@ -1,10 +1,14 @@
 CC = cc
 CFLAGS = #-Wall -Wextra -Werror
 
-SRCS = 	stack_sort_algo.c \
+SRCS = 	stack_sort_algo.c stack_sort_algo_n.c\
 		stack_cmd_a.c  stack_cmd_b.c  stack_cmd_c.c \
 		stack_operations.c  \
-	   	stack_util_a.c  stack_util_b.c 
+	   	stack_util_a.c  stack_util_b.c \
+		debug_util.c \
+		lis_calc.c lis_set_mask.c \
+		stack_calc_cost.c stack_execute_cost.c \
+
 
 
 
@@ -16,7 +20,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS) $(libft)
 	make -C libft
-	$(CC) $(CFLAGS)  $@.c $^ $(LIBFT_LIB) -o $@.o
+	$(CC) $(CFLAGS)  $@.c $^ $(LIBFT_LIB) -o $@
 
 
 %.o: %.c 
