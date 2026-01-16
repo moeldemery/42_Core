@@ -12,6 +12,36 @@
 
 #include "push_swap.h"
 
+int	ft_is_str_digit(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i])
+	{
+		if (ft_isdigit(str[i]) == 0)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+t_element	*ft_init_element(int value)
+{
+	t_element	*element;
+
+	element = malloc(sizeof(t_element));
+	if (!element)
+		return (NULL);
+	element->value = value;
+	element->cost = 0;
+	element->lis_cost = 1;
+	element->lis_mask = 0;
+	return (element);
+}
+
 int	ft_is_sorted(td_list *stack)
 {
 	td_list		*current;

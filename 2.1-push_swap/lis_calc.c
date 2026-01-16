@@ -41,8 +41,8 @@ static int	ft_process_lis_element(td_list *stack_a, td_list *curr)
 
 int	ft_calculate_lis(td_list **stack_a, int size)
 {
-	td_list		*curr;
-	int			max_len;
+	td_list	*curr;
+	int		max_len;
 
 	if (size <= 1)
 		return (size);

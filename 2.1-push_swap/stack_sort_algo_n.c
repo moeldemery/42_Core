@@ -25,11 +25,11 @@ int	ft_find_lis(td_list **stack_a, int size)
 	return (lis_len);
 }
 
-void	ft_push_non_lis(td_list **stack_a, td_list **stack_b,
-		int size,int lis_len)
+void	ft_push_non_lis(td_list **stack_a, td_list **stack_b, int size,
+		int lis_len)
 {
-	int	pushed;
-	int	limit;
+	int			pushed;
+	int			limit;
 	t_element	*elem;
 
 	pushed = 0;
@@ -56,6 +56,7 @@ void	ft_sort_remaining(td_list **stack_a, td_list **stack_b)
 	size_b = ft_lstd_size(*stack_b);
 	while (*stack_b)
 	{
+		ft_reset_costs(*stack_b);
 		size_a = ft_lstd_size(*stack_a);
 		size_b = ft_lstd_size(*stack_b);
 		ft_calculate_costs(stack_a, stack_b, size_a, size_b);
@@ -69,7 +70,6 @@ void	ft_final_rotate(td_list **stack_a)
 {
 	int	min_pos;
 	int	size_a;
-	int	reverse_rotations;
 
 	size_a = ft_lstd_size(*stack_a);
 	min_pos = ft_find_min(*stack_a, DEBUG);
@@ -80,8 +80,7 @@ void	ft_final_rotate(td_list **stack_a)
 	}
 	else
 	{
-		reverse_rotations = size_a - min_pos;
-		while (reverse_rotations-- > 0)
+		while (size_a - min_pos++ > 0)
 			ft_rra(stack_a);
 	}
 }

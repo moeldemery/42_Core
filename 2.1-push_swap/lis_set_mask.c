@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"push_swap.h"
-
+#include "push_swap.h"
 
 static int	ft_find_predecessor(td_list *stack_a, td_list *curr,
 		int current_needed, int elem_value)
@@ -57,11 +56,10 @@ void	ft_set_max_lis_mask(td_list *stack_a, int max_len)
 		elem = (t_element *)temp->content;
 		if (elem->lis_cost == current_needed && elem->value < last_value)
 		{
-			if (current_needed == 1
-				|| ft_find_predecessor(stack_a, temp, current_needed, elem->value))
+			if (current_needed == 1 || ft_find_predecessor(stack_a, temp,
+					current_needed, elem->value))
 				ft_mark_lis_element(temp, &current_needed, &last_value);
 		}
 		temp = temp->prev;
 	}
 }
-

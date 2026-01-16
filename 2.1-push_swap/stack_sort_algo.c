@@ -89,11 +89,11 @@ void	ft_sort_five(td_list **stack_a, td_list **stack_b)
 
 void	ft_sort_n(td_list **stack_a, td_list **stack_b, int size)
 {
-	int lis_len;
+	int	lis_len;
 
 	lis_len = ft_find_lis(stack_a, size);
 	ft_list_print_lismask(*stack_a, (int)DEBUG, "Final  LIS Mask:");
-	ft_push_non_lis(stack_a, stack_b, size,lis_len);
+	ft_push_non_lis(stack_a, stack_b, size, lis_len);
 	ft_list_print(*stack_a, (int)DEBUG, "LIS Stack A:");
 	ft_list_print(*stack_b, (int)DEBUG, "LIS Stack B:");
 	ft_sort_remaining(stack_a, stack_b);

@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meldemir <meldemir@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/10 14:34:49 by meldemir          #+#    #+#             */
-/*   Updated: 2026/01/10 14:34:52 by meldemir         ###   ########.fr       */
+/*   Created: 2026/01/16 21:34:10 by meldemir          #+#    #+#             */
+/*   Updated: 2026/01/16 21:34:12 by meldemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "checker.h"
 #include "push_swap.h"
-#include "arg_support.h"
 
 int	main(int argc, char **argv)
 {
@@ -36,5 +37,5 @@ int	main(int argc, char **argv)
 		return (ft_printf("Error\n") != 0);
 	ft_list_print(stack_a, DEBUG, "Initial Stack A:");
 	ft_list_print(stack_b, DEBUG, "Initial Stack B:");
-	return (ft_sort_stack(&stack_a, &stack_b));
+	return (0);
 }

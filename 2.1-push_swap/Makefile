@@ -5,7 +5,7 @@ SRCS = 	stack_sort_algo.c stack_sort_algo_n.c\
 		stack_cmd_a.c  stack_cmd_b.c  stack_cmd_c.c \
 		stack_operations.c  \
 	   	stack_util_a.c  stack_util_b.c \
-		debug_util.c \
+		debug_util.c arg_support.c\
 		lis_calc.c lis_set_mask.c \
 		stack_calc_cost.c stack_execute_cost.c \
 

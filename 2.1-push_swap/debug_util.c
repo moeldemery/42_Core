@@ -92,7 +92,7 @@ int	ft_list_print_costs(td_list *lst, int is_enabled, char *msg)
 	return (1);
 }
 
-int	ft_print_index_costs(td_list *lst,int index, int is_enabled, char *msg)
+int	ft_print_index_costs(td_list *lst, int index, int is_enabled, char *msg)
 {
 	td_list		*temp;
 	t_element	*elem;

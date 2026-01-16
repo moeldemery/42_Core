@@ -12,33 +12,57 @@
 
 #include "push_swap.h"
 
-int	ft_find_insert_position(td_list *stack_a, int value)
+int	ft_find_min_index(td_list *stack)
 {
-	td_list		*temp;
-	int			position;
-	t_element	*elem;
-	t_element	*next_elem;
-	t_element	*last_elem;
+	int		min_idx;
+	int		i;
+	int		min_val;
+	td_list	*curr;
 
-	temp = stack_a;
-	position = 0;
-	if (!stack_a || !stack_a->next)
-    	return (0);
-	while (temp->next != NULL)
+	if (!stack)
+		return (0);
+	curr = stack;
+	min_val = ((t_element *)curr->content)->value;
+	min_idx = 0;
+	i = 0;
+	while (curr)
 	{
-		elem = (t_element *)temp->content;
-		next_elem = (t_element *)temp->next->content;
-		if (value > elem->value && value < next_elem->value)
-			return (position + 1);
-		temp = temp->next;
-		position++;
+		if (((t_element *)curr->content)->value < min_val)
+		{
+			min_val = ((t_element *)curr->content)->value;
+			min_idx = i;
+		}
+		curr = curr->next;
+		i++;
 	}
-	last_elem = (t_element *)temp->content;
-	if (value > last_elem->value)
-		return (position + 1);
-	return (0);
+	return (min_idx);
 }
 
+int	ft_find_insert_position(td_list *stack_a, int value)
+{
+	td_list		*curr;
+	int			target_idx;
+	int			closest_bigger;
+	int			i;
+	t_element	*el;
+
+	closest_bigger = MAX_INT;
+	target_idx = ft_find_min_index(stack_a);
+	curr = stack_a;
+	i = 0;
+	while (curr)
+	{
+		el = (t_element *)curr->content;
+		if (el->value > value && el->value < closest_bigger)
+		{
+			closest_bigger = el->value;
+			target_idx = i;
+		}
+		curr = curr->next;
+		i++;
+	}
+	return (target_idx);
+}
 
 int	ft_find_cheapest_index(td_list *stack_b)
 {
