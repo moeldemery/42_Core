@@ -15,10 +15,11 @@
 
 # include "libft/ft_printf.h"
 # include "libft/libft.h"
+# include "push_swap.h"
 # include <stdlib.h>
 # include <unistd.h>
 
-int	ft_process_arg(char *arg, td_list **stack);
-int	ft_proccess_arg_split(char *arg, td_list **stack);
+int	ft_process_arg(char *arg, t_d_list **stack);
+int	ft_proccess_arg_split(char *arg, t_d_list **stack);
 
 #endif

@@ -42,9 +42,9 @@ t_element	*ft_init_element(int value)
 	return (element);
 }
 
-int	ft_is_sorted(td_list *stack)
+int	ft_is_sorted(t_d_list *stack)
 {
-	td_list		*current;
+	t_d_list	*current;
 	t_element	*curr_elem;
 	t_element	*next_elem;
 
@@ -60,9 +60,9 @@ int	ft_is_sorted(td_list *stack)
 	return (1);
 }
 
-int	ft_find_min(td_list *stack, int is_debug)
+int	ft_find_min(t_d_list *stack, int is_debug)
 {
-	td_list		*temp;
+	t_d_list	*temp;
 	int			index;
 	int			min;
 	int			pos;
@@ -89,9 +89,9 @@ int	ft_find_min(td_list *stack, int is_debug)
 	return (pos);
 }
 
-int	ft_find_max(td_list *stack, int is_debug)
+int	ft_find_max(t_d_list *stack, int is_debug)
 {
-	td_list		*temp;
+	t_d_list	*temp;
 	int			index;
 	int			max;
 	int			pos;

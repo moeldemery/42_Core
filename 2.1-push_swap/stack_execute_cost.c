@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-td_list	*ft_get_element_at_index(td_list *stack, int index)
+t_d_list	*ft_get_element_at_index(t_d_list *stack, int index)
 {
 	if (!stack || index < 0)
 		return (NULL);
@@ -23,7 +23,8 @@ td_list	*ft_get_element_at_index(td_list *stack, int index)
 	return (stack);
 }
 
-static void	ft_apply_double_rotations(td_list **a, td_list **b, t_element *best)
+static void	ft_apply_double_rotations(t_d_list **a, t_d_list **b,
+		t_element *best)
 {
 	while (best->cost_a > 0 && best->cost_b > 0)
 	{
@@ -39,7 +40,7 @@ static void	ft_apply_double_rotations(td_list **a, td_list **b, t_element *best)
 	}
 }
 
-static void	ft_apply_single_a(td_list **a, t_element *best)
+static void	ft_apply_single_a(t_d_list **a, t_element *best)
 {
 	while (best->cost_a > 0)
 	{
@@ -53,7 +54,7 @@ static void	ft_apply_single_a(td_list **a, t_element *best)
 	}
 }
 
-static void	ft_apply_single_b(td_list **b, t_element *best)
+static void	ft_apply_single_b(t_d_list **b, t_element *best)
 {
 	while (best->cost_b > 0)
 	{
@@ -67,11 +68,11 @@ static void	ft_apply_single_b(td_list **b, t_element *best)
 	}
 }
 
-void	ft_execute_cheapest_move(td_list **stack_a, td_list **stack_b)
+void	ft_execute_cheapest_move(t_d_list **stack_a, t_d_list **stack_b)
 {
 	t_element	*best;
 	int			best_idx;
-	td_list		*best_node;
+	t_d_list	*best_node;
 
 	best_idx = ft_find_cheapest_index(*stack_b);
 	best_node = ft_get_element_at_index(*stack_b, best_idx);

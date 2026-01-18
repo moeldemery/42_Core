@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	ft_reset_costs(td_list *stack_b)
+void	ft_reset_costs(t_d_list *stack_b)
 {
 	t_element	*el;
 
@@ -52,10 +52,10 @@ int	ft_get_combined_cost(int a, int b)
 	return (ft_abs(a) + ft_abs(b));
 }
 
-void	ft_calculate_costs(td_list **stack_a, td_list **stack_b, int size_a,
+void	ft_calculate_costs(t_d_list **stack_a, t_d_list **stack_b, int size_a,
 		int size_b)
 {
-	td_list		*temp_b;
+	t_d_list	*temp_b;
 	t_element	*el;
 	int			i_b;
 	int			pos_a;

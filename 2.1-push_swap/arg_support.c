@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "arg_support.h"
 
-int	ft_process_arg(char *arg, td_list **stack)
+int	ft_process_arg(char *arg, t_d_list **stack)
 {
 	t_element	*element;
 	int			num;
@@ -25,7 +25,7 @@ int	ft_process_arg(char *arg, td_list **stack)
 	return (1);
 }
 
-int	ft_proccess_arg_split(char *arg, td_list **stack)
+int	ft_proccess_arg_split(char *arg, t_d_list **stack)
 {
 	t_element	*element;
 	int			num;

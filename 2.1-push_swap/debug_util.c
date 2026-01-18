@@ -12,9 +12,9 @@
 
 #include "push_swap.h"
 
-int	ft_list_print(td_list *lst, int is_enabled, char *msg)
+int	ft_list_print(t_d_list *lst, int is_enabled, char *msg)
 {
-	td_list		*temp;
+	t_d_list	*temp;
 	t_element	*elem;
 
 	if (is_enabled == 0)
@@ -32,9 +32,9 @@ int	ft_list_print(td_list *lst, int is_enabled, char *msg)
 	return (1);
 }
 
-int	ft_list_print_liscost(td_list *lst, int is_enabled, char *msg)
+int	ft_list_print_liscost(t_d_list *lst, int is_enabled, char *msg)
 {
-	td_list		*temp;
+	t_d_list	*temp;
 	t_element	*elem;
 
 	if (is_enabled == 0)
@@ -52,9 +52,9 @@ int	ft_list_print_liscost(td_list *lst, int is_enabled, char *msg)
 	return (1);
 }
 
-int	ft_list_print_lismask(td_list *lst, int is_enabled, char *msg)
+int	ft_list_print_lismask(t_d_list *lst, int is_enabled, char *msg)
 {
-	td_list		*temp;
+	t_d_list	*temp;
 	t_element	*elem;
 
 	if (is_enabled == 0)
@@ -72,9 +72,9 @@ int	ft_list_print_lismask(td_list *lst, int is_enabled, char *msg)
 	return (1);
 }
 
-int	ft_list_print_costs(td_list *lst, int is_enabled, char *msg)
+int	ft_list_print_costs(t_d_list *lst, int is_enabled, char *msg)
 {
-	td_list		*temp;
+	t_d_list	*temp;
 	t_element	*elem;
 
 	if (is_enabled == 0)
@@ -92,9 +92,9 @@ int	ft_list_print_costs(td_list *lst, int is_enabled, char *msg)
 	return (1);
 }
 
-int	ft_print_index_costs(td_list *lst, int index, int is_enabled, char *msg)
+int	ft_print_index_costs(t_d_list *lst, int index, int is_enabled, char *msg)
 {
-	td_list		*temp;
+	t_d_list	*temp;
 	t_element	*elem;
 
 	if (is_enabled == 0)

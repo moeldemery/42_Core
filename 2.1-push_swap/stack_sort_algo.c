@@ -12,12 +12,11 @@
 
 #include "push_swap.h"
 
-void	ft_sort_three(td_list **stack)
+void	ft_sort_three(t_d_list **stack)
 {
 	int			first;
 	int			second;
 	int			third;
-	t_element	*elem;
 
 	first = ((t_element *)(*stack)->content)->value;
 	second = ((t_element *)(*stack)->next->content)->value;
@@ -40,7 +39,7 @@ void	ft_sort_three(td_list **stack)
 		ft_ra(stack);
 }
 
-void	ft_sort_four(td_list **stack_a, td_list **stack_b)
+void	ft_sort_four(t_d_list **stack_a, t_d_list **stack_b)
 {
 	int	pos;
 
@@ -61,7 +60,7 @@ void	ft_sort_four(td_list **stack_a, td_list **stack_b)
 	ft_pa(stack_a, stack_b);
 }
 
-void	ft_sort_five(td_list **stack_a, td_list **stack_b)
+void	ft_sort_five(t_d_list **stack_a, t_d_list **stack_b)
 {
 	int	pos;
 
@@ -87,7 +86,7 @@ void	ft_sort_five(td_list **stack_a, td_list **stack_b)
 	ft_pa(stack_a, stack_b);
 }
 
-void	ft_sort_n(td_list **stack_a, td_list **stack_b, int size)
+void	ft_sort_n(t_d_list **stack_a, t_d_list **stack_b, int size)
 {
 	int	lis_len;
 
@@ -100,7 +99,7 @@ void	ft_sort_n(td_list **stack_a, td_list **stack_b, int size)
 	ft_final_rotate(stack_a);
 }
 
-int	ft_sort_stack(td_list **stack_a, td_list **stack_b)
+int	ft_sort_stack(t_d_list **stack_a, t_d_list **stack_b)
 {
 	int	size;
 
@@ -122,5 +121,7 @@ int	ft_sort_stack(td_list **stack_a, td_list **stack_b)
 		ft_sort_n(stack_a, stack_b, size);
 	ft_list_print(*stack_a, (int)DEBUG, "Sorted Stack A:");
 	ft_list_print(*stack_b, (int)DEBUG, "Sorted Stack B:");
+	free_stack(stack_a);
+	free_stack(stack_b);
 	return (0);
 }

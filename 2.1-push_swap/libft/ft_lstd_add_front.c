@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-void	ft_lstd_add_front(td_list **lst, td_list *new)
+void	ft_lstd_add_front(t_d_list **lst, t_d_list *new)
 {
 	if (lst == NULL || new == NULL)
 		return ;

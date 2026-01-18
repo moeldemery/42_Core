@@ -10,13 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
-#include "arg_support.h"
 
 int	main(int argc, char **argv)
 {
-	td_list	*stack_a;
-	td_list	*stack_b;
-	int		i;
+	t_d_list	*stack_a;
+	t_d_list	*stack_b;
+	int			i;
 
 	stack_a = NULL;
 	stack_b = NULL;
@@ -28,9 +27,9 @@ int	main(int argc, char **argv)
 	}
 	else if (argc > 2)
 	{
-		while (i++ < argc)
+		while (i++ < argc - 1)
 			if (!ft_process_arg(argv[i], &stack_a))
-				return (ft_printf("Error\n") != 0);
+				return (free_stack(&stack_a), ft_printf("Error\n"), 1);
 	}
 	else
 		return (ft_printf("Error\n") != 0);

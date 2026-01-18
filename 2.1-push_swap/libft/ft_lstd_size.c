@@ -12,11 +12,11 @@
 
 #include "libft.h"
 
-int	ft_lstd_size(td_list *lst)
+int	ft_lstd_size(t_d_list *lst)
 {
-	int		count;
-	td_list	*current;
-	
+	int			count;
+	t_d_list	*current;
+
 	if (!lst)
 		return (0);
 	count = 0;

@@ -12,10 +12,10 @@
 
 #include "push_swap.h"
 
-static int	ft_find_predecessor(td_list *stack_a, td_list *curr,
+static int	ft_find_predecessor(t_d_list *stack_a, t_d_list *curr,
 		int current_needed, int elem_value)
 {
-	td_list		*check;
+	t_d_list	*check;
 	t_element	*check_elem;
 
 	check = stack_a;
@@ -30,7 +30,7 @@ static int	ft_find_predecessor(td_list *stack_a, td_list *curr,
 	return (0);
 }
 
-static void	ft_mark_lis_element(td_list *elem, int *current_needed,
+static void	ft_mark_lis_element(t_d_list *elem, int *current_needed,
 		int *last_value)
 {
 	t_element	*elem_data;
@@ -41,9 +41,9 @@ static void	ft_mark_lis_element(td_list *elem, int *current_needed,
 	(*current_needed)--;
 }
 
-void	ft_set_max_lis_mask(td_list *stack_a, int max_len)
+void	ft_set_max_lis_mask(t_d_list *stack_a, int max_len)
 {
-	td_list		*temp;
+	t_d_list	*temp;
 	int			current_needed;
 	int			last_value;
 	t_element	*elem;

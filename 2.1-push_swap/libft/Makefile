@@ -19,9 +19,9 @@ SRCS = \
 	ft_lstiter.c ft_lstmap.c ft_lstnew.c ft_lstadd_front.c \
 	ft_lstadd_back.c ft_lstsize.c ft_lstlast.c \
 	ft_lstd_size.c ft_lstd_last.c ft_lstd_add_back.c ft_lstd_add_front.c \
-	ft_lstd_new.c\
-	ft_printf.c \
-	ft_putnbr_base.c
+	ft_lstd_new.c ft_lstd_delall.c\
+	ft_printf.c ft_putnbr_base.c \
+	get_next_line.c get_next_line_utils.c
 	
 INCLUDE = include/
 

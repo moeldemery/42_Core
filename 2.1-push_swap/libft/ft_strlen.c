@@ -23,7 +23,6 @@ size_t	ft_strlen(const char *str)
 	}
 	return (count);
 }
-
 /*
 #include <stdlib.h>
 #include <unistd.h>

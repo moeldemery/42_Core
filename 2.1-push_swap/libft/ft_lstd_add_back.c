@@ -11,9 +11,9 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-void	ft_lstd_add_back(td_list **lst, td_list *new)
+void	ft_lstd_add_back(t_d_list **lst, t_d_list *new)
 {
-	td_list	*last;
+	t_d_list	*last;
 
 	if (lst == NULL || new == NULL)
 		return ;

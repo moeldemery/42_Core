@@ -20,9 +20,9 @@ static void	ft_update_lis_cost(t_element *curr_elem, t_element *prev_elem)
 	}
 }
 
-static int	ft_process_lis_element(td_list *stack_a, td_list *curr)
+static int	ft_process_lis_element(t_d_list *stack_a, t_d_list *curr)
 {
-	td_list		*prev;
+	t_d_list	*prev;
 	t_element	*curr_elem;
 	int			max_update;
 
@@ -39,10 +39,10 @@ static int	ft_process_lis_element(td_list *stack_a, td_list *curr)
 	return (max_update);
 }
 
-int	ft_calculate_lis(td_list **stack_a, int size)
+int	ft_calculate_lis(t_d_list **stack_a, int size)
 {
-	td_list	*curr;
-	int		max_len;
+	t_d_list	*curr;
+	int			max_len;
 
 	if (size <= 1)
 		return (size);

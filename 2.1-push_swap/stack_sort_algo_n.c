@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int	ft_find_lis(td_list **stack_a, int size)
+int	ft_find_lis(t_d_list **stack_a, int size)
 {
 	int	lis_len;
 
@@ -25,7 +25,7 @@ int	ft_find_lis(td_list **stack_a, int size)
 	return (lis_len);
 }
 
-void	ft_push_non_lis(td_list **stack_a, td_list **stack_b, int size,
+void	ft_push_non_lis(t_d_list **stack_a, t_d_list **stack_b, int size,
 		int lis_len)
 {
 	int			pushed;
@@ -47,7 +47,7 @@ void	ft_push_non_lis(td_list **stack_a, td_list **stack_b, int size,
 	}
 }
 
-void	ft_sort_remaining(td_list **stack_a, td_list **stack_b)
+void	ft_sort_remaining(t_d_list **stack_a, t_d_list **stack_b)
 {
 	int	size_a;
 	int	size_b;
@@ -66,7 +66,7 @@ void	ft_sort_remaining(td_list **stack_a, td_list **stack_b)
 	}
 }
 
-void	ft_final_rotate(td_list **stack_a)
+void	ft_final_rotate(t_d_list **stack_a)
 {
 	int	min_pos;
 	int	size_a;

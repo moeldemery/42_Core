@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_lstdelall.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meldemir <meldemir@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/09 15:36:10 by meldemir          #+#    #+#             */
-/*   Updated: 2026/01/09 15:36:12 by meldemir         ###   ########.fr       */
+/*   Created: 2026/01/09 15:36:32 by meldemir          #+#    #+#             */
+/*   Updated: 2026/01/09 15:36:33 by meldemir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-t_d_list	*ft_lstd_last(t_d_list *lst)
+void	ft_lstd_delall(t_d_list *lst)
 {
-	if (lst == NULL)
-		return (NULL);
-	while (lst->next != NULL)
+	if (lst == NULL )
+		return ;
+	while (lst)
 	{
+		free(lst->content);
 		lst = lst->next;
 	}
-	return (lst);
+	free(lst);
 }
