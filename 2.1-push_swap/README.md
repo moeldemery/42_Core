@@ -1,250 +1,167 @@
-*This project has been created as part of the 42 curriculum by meldemir.*
+*This project has been created as part of the 42 curriculum by meldemir*
 
-# ft_printf
+# Push_Swap - 42 Project
 
-## Description
+## 📋 Description
 
-`ft_printf` is a recreation of the standard C library's `printf()` function. This project implements a variadic function that formats and prints output according to format specifiers, making it a core component of C programming education.
+The goal of the **Push_Swap** project is to sort a given set of unique integers on a single stack (`a`), using a limited set of operations, and displaying the shortest sequence of instructions possible. This implementation leverages a highly optimized hybrid algorithm combining **Longest Increasing Subsequence (LIS)** and a **Cost-Based Greedy Search** to achieve competitive results for high points validation.
 
-### Goal
+### 🚀 Algorithm Implementation Breakdown
 
-The primary goal of this project is to:
-- Understand how variadic functions work in C using `<stdarg.h>`
-- Implement format string parsing and character conversion
-- Handle multiple data types and output formats
-- Create a fundamental I/O library function from scratch
+### 1. Identifying the Longest Increasing Subsequence (LIS)
 
-### Overview
+The functions in `lis_calc.c` and `lis_set_mask.c` determine which numbers form the "sorted backbone".
 
-The implementation provides support for the most commonly used format specifiers:
-- `%c` - Character
-- `%s` - String
-- `%d` - Decimal integer
-- `%i` - Integer
-- `%u` - Unsigned integer
-- `%x` - Hexadecimal (lowercase)
-- `%X` - Hexadecimal (uppercase)
-- `%p` - Pointer address
-- `%%` - Literal percent sign
+*   **`ft_calculate_lis`**: Uses dynamic programming to compute the length of the LIS ending at each element, stored in `lis_cost`.
+*   **`ft_set_max_lis_mask`**: Backtracks from the end of the list to mark the chosen LIS sequence by setting the `lis_mask` flag to `1`.
+*   **`ft_push_non_lis`**: Pushes all elements with `lis_mask == 0` to Stack B using `ft_pb`.
 
-The function returns the number of characters printed, matching the behavior of the standard `printf()`.
+### 2. The Cost-Based "Turk" Strategy (Stack B -> Stack A)
 
-## Instructions
+The functions in `stack_calculate_cost.c` manage the efficient return of elements to Stack A.
+
+*   **`ft_calculate_costs`**: This function iterates through Stack B and uses `ft_find_insert_position` to find the ideal target spot in Stack A. It assigns signed costs (`cost_a`, `cost_b`) for `ra`/`rra` and `rb`/`rrb` moves.
+*   **`ft_get_combined_cost`**: This crucial utility optimizes moves by using `Max()` logic for combined rotations (`rr`/`rrr`) to reduce the total action count.
+
+### 3. Executing the Moves (`stack_execute_cost.c`)
+
+*   **`ft_execute_cheapest_move`**: This function finds the element in Stack B with the minimum total cost (`ft_find_cheapest_index`) and performs the moves.
+*   **`ft_apply_double_rotations`**: Prioritizes `rr` or `rrr` instructions to save moves.
+*   **`ft_apply_single_a` / `ft_apply_single_b`**: Applies remaining single rotations (`ra`, `rra`, `rb`, `rrb`) to align everything perfectly before a final `pa`.
+
+### 4. The Checker Program (Bonus)
+
+A separate `checker` program reads instructions from standard input, validates them, applies them to the stack, and outputs `OK` or `KO` based on the final sorted state. It handles invalid commands by printing `Error` to `stderr` and exiting with a failure status.
+
+Use code with caution.
+AI responses may include mistakes. Learn more
+## 🚀 Algorithm Implementation Breakdown
+
+### 1. Identifying the Longest Increasing Subsequence (LIS)
+
+The functions in `lis_calc.c` and `lis_set_mask.c` determine which numbers form the "sorted backbone".
+
+*   **`ft_calculate_lis`**: Uses dynamic programming to compute the length of the LIS ending at each element, stored in `lis_cost`.
+*   **`ft_set_max_lis_mask`**: Backtracks from the end of the list to mark the chosen LIS sequence by setting the `lis_mask` flag to `1`.
+*   **`ft_push_non_lis`**: Pushes all elements with `lis_mask == 0` to Stack B using `ft_pb`.
+
+### 2. The Cost-Based "Turk" Strategy (Stack B -> Stack A)
+
+The functions in `stack_calculate_cost.c` manage the efficient return of elements to Stack A.
+
+*   **`ft_calculate_costs`**: This function iterates through Stack B and uses `ft_find_insert_position` to find the ideal target spot in Stack A. It assigns signed costs (`cost_a`, `cost_b`) for `ra`/`rra` and `rb`/`rrb` moves.
+*   **`ft_get_combined_cost`**: This crucial utility optimizes moves by using `Max()` logic for combined rotations (`rr`/`rrr`) to reduce the total action count.
+
+### 3. Executing the Moves (`stack_execute_cost.c`)
+
+*   **`ft_execute_cheapest_move`**: This function finds the element in Stack B with the minimum total cost (`ft_find_cheapest_index`) and performs the moves.
+*   **`ft_apply_double_rotations`**: Prioritizes `rr` or `rrr` instructions to save moves.
+*   **`ft_apply_single_a` / `ft_apply_single_b`**: Applies remaining single rotations (`ra`, `rra`, `rb`, `rrb`) to align everything perfectly before a final `pa`.
+
+### 4. The Checker Program (Bonus)
+
+A separate `checker` program reads instructions from standard input, validates them, applies them to the stack, and outputs `OK` or `KO` based on the final sorted state. It handles invalid commands by printing `Error` to `stderr` and exiting with a failure status.
+
+
+## 📊 Performance
+
+This algorithm consistently achieves scores well within the 5-point validation benchmarks provided in the subject:
+
+| Numbers | Goal (5 Points) | My Average Moves |
+| :--- | :--- | :--- |
+| 100 | < 700 moves | ~500–600 moves |
+| 500 | < 5500 moves | ~4,000–4,800 moves |
+
+## 🛠️ Instructions
+
+My program utilizes the mandatory instruction set to manipulate data between two stacks, `a` and `b`:
+
+| Code | Description |
+| :--- | :--- |
+| `sa` / `sb` / `ss` | Swap the first 2 elements at the top of the stack. |
+| `pa` / `pb` | Push the first element from one stack to the top of the other. |
+| `ra` / `rb` / `rr` | Shift up all elements of a stack by 1 (first becomes last). |
+| `rra` / `rrb` / `rrr` | Shift down all elements of a stack by 1 (last becomes first). |
+
+## ⚙️ Compilation and Execution
 
 ### Compilation
 
-To compile the project, use the provided Makefile:
+To compile the mandatory `push_swap` program and the bonus `checker` program, use the provided `Makefile`:
 
 ```bash
-make
+# Compile the main push_swap program
+make all
+
+# Compile the bonus checker program
+make bonus
 ```
 
-This will:
-1. Compile the libft library (dependency)
-2. Compile `ft_printf.c` and `ft_putnbr_base.c`
-3. Create a static library `libftprintf.a`
-
-### Available Make Commands
-
-- `make` - Compile and create the static library
-- `make clean` - Remove object files
-- `make fclean` - Remove object files and the library
-- `make re` - Clean and recompile
-
-### Usage
-
-To use `ft_printf` in your code:
-
-```c
-#include "ft_printf.h"
-
-int main(void)
-{
-    ft_printf("Hello, %s!\n", "World");
-    ft_printf("Number: %d, Hex: %x\n", 42, 42);
-    return (0);
-}
+Standard Makefile rules are also available:
 ```
+    make clean: Removes all object files (.o).
+    make fclean: Removes object files and the push_swap and checker executables.
+    make re: Performs fclean followed by all.
+```
+### Execution 
+The push_swap program: The program takes a list of unique integers as arguments. The output is a sequence of instructions printed to standard output. 
 
-Compile with linking:
 ```bash
-cc -Wall -Wextra -Werror main.c libftprintf.a -o program
-./program
+./push_swap 2 1 3 6 5 8
+# Example output:
+sa
+pb
+pb
+pb
+sa
+pa
+pa
+pa
 ```
+Use code with caution.The checker program (Bonus): The checker reads the output from push_swap via a pipe (|) to verify the sorting process and memory management. It outputs OK if successful or KO otherwise.
 
-### Testing
+```bash
+./push_swap 2 1 3 6 5 8 | ./checker 2 1 3 6 5 8
+# Output: OK
 
-A test file (`test.c`) is included with example usage cases. Uncomment the test cases in `ft_printf.c` to run basic functionality tests.
-
-## Algorithm and Data Structure Explanation
-
-### Architecture
-
-The implementation follows a three-tier parsing approach:
-
-1. **Main Loop** (`ft_printf` function)
-   - Iterates through the format string character by character
-   - Detects the `%` character which signals a format specifier
-   - Delegates processing to the classifier function
-
-2. **Format Specifier Classification** (`ft_print_clasifier` function)
-   - Takes the character immediately following `%`
-   - Routes to appropriate handler based on the specifier type
-   - Returns the number of characters printed
-
-3. **Conversion Functions**
-   - `ft_print_address` - Handles pointer format (`%p`)
-   - `ft_putnbr_base` - Generic number-to-base conversion
-   - Library functions for string/character output
-
-### Data Flow Diagram
+./push_swap 0 one 2 3
+# Output: Error
 
 ```
-ft_printf(format, ...)
-    ↓
-va_start() - Initialize variadic argument list
-    ↓
-Loop through format string
-    ├─ Regular character → write(1, char, 1)
-    └─ '%' found → ft_print_clasifier()
-        ├─ %c → va_arg() → putchar
-        ├─ %s → va_arg() → ft_putstr_fd
-        ├─ %d/%i → va_arg() → ft_putnbr_base(DEC)
-        ├─ %u → va_arg(unsigned) → ft_putnbr_base(DEC)
-        ├─ %x → va_arg() → ft_putnbr_base(HEXS)
-        ├─ %X → va_arg() → ft_putnbr_base(HEX)
-        ├─ %p → va_arg() → ft_print_address()
-        └─ %% → write '%' literal
-    ↓
-va_end() - Clean up argument list
-    ↓
-return counter (total characters printed)
-```
+## 💻 Technical Implementation Details 
+### Data Structures 
+I used a Doubly Linked List structure (t_d_list from my libft) which provides efficient \(O(1)\) operations for most instructions due to pointers to both the next and prev nodes. 
 
-### Key Implementation Details
+Each node's content pointer holds a t_element structure, defined in push_swap.h, which stores extra metadata crucial for the cost calculation:
 
-#### 1. **Variadic Arguments (`va_list`)**
-```c
-va_list args;
-va_start(args, str);           // Initialize after last known parameter
-va_arg(args, type);            // Extract arguments in order
-va_end(args);                  // Cleanup
-```
-The variadic mechanism requires careful type handling. Each `va_arg()` call must know the type being extracted, as there's no automatic type checking. Arguments are consumed in the order they appear in the format string.
-
-#### 2. **Base Conversion (`ft_putnbr_base`)**
-The project uses a generic base conversion function instead of separate functions for decimal, hex, etc. This demonstrates:
-- **Polymorphism through function parameters** - The `base` parameter string defines the digit set
-- **Efficient digit extraction** - Using modulo operator to isolate rightmost digit
-- **Recursive approach** - Naturally handles multi-digit numbers
-
-Example bases:
-- `DEC = "0123456789"` - Decimal (base 10)
-- `HEXS = "0123456789abcdef"` - Hexadecimal lowercase (base 16)
-- `HEX = "0123456789ABCDEF"` - Hexadecimal uppercase (base 16)
-
-#### 3. **Pointer Handling**
-```c
-static int ft_print_address(unsigned long addr)
+``` c
+typedef struct s_element
 {
-    if (!addr)
-        return (write(1, "(nil)", 5));  // NULL pointer special case
-    write(1, "0x", 2);                  // Prefix
-    return (ft_putnbr_base(addr, HEXS) + 2);
-}
+	int		value;      // The actual integer value
+	int		lis_cost;   // Length of LIS ending here (used in calc)
+	int		lis_mask;   // Flag: 1 if part of final LIS, 0 otherwise
+	int		cost;       // Total optimal moves (final result)
+	int		cost_a;     // Signed moves needed for Stack A target
+	int		cost_b;     // Signed moves needed for Stack B element
+}			t_element;
 ```
-Pointers require special handling:
-- NULL pointers print as `(nil)` instead of `0x0`
-- Cast to `unsigned long` for proper bit representation
-- Prefix with `0x` to indicate hexadecimal
+### Argument Parsing and Error Handling (arg_support.c) 
 
-#### 4. **Character Counting**
-The function maintains a `counter` variable tracking all printed characters. Each branch returns the number of characters it printed, which is accumulated. This matches `printf()`'s return value specification.
+The initial stack is built with robust error checking, ensuring no non-numeric inputs, duplicates, or integer overflows are accepted. Errors are printed to standard error (stderr) and the program exits cleanly, freeing all memory with free_stack(). 
+### Makefile Structure 
+The provided Makefile is configured to manage both the main mandatory project (push_swap) and the bonus checker program separately using specific rules (all and bonus). It automatically compiles my libft submodule first before linking, adhering strictly to the project Norm. 
 
-### Why This Design?
+## 🔗 Resources & AI Usage
 
-**Advantages:**
-- **Simplicity** - Linear parsing without complex state machines
-- **Efficiency** - Single pass through format string, O(n) complexity
-- **Reusability** - Generic `ft_putnbr_base` handles multiple number formats
-- **Portability** - Uses only standard C library functions
+### Resources
 
-**Trade-offs:**
-- No support for width specifiers (e.g., `%5d`) or precision (e.g., `%.2f`)
-- No floating-point support
-- Limited format specifier set
-These are intentional constraints of the 42 curriculum project scope.
+*   **42 Subject PDF**: The official project guidelines, rules, benchmarks, and instruction set definition.
+*   **Longest Increasing Subsequence (LIS)**: Standard dynamic programming concept used for the pre-sorting phase.
+    *   [Explanation of LIS Algorithm on GeeksforGeeks](https://www.geeksforgoeks.org)
+*   **The "Turk Algorithm" (Cost-Based Search)**: The primary strategy for optimizing the return of elements from Stack B to Stack A.
+    *   [Push-Swap Turk Algorithm Explained in 6 Steps](https://pure-forest.medium.com)
+    *   [42 Push_swap explained (Psuedocodes & Strategy)](https://medium.com)
 
-## Resources
+### AI Usage Statement
 
-### Documentation
-- [C Standard Library - printf](https://en.cppreference.com/w/c/io/printf) - CPP Reference documentation
-- [stdarg.h - Variable Argument Lists](https://en.cppreference.com/w/c/variadic) - How variadic functions work
-- [unistd.h - write() system call](https://man7.org/linux/man-pages/man2/write.2.html) - Low-level output
-
-### Articles & Tutorials
-- [Number Base Conversion](https://www.khanacademy.org/math/algebra2/x2ec2f6f830c9fb89:logs/x2ec2f6f830c9fb89:log-intro/a/intro-to-logarithms) - Understanding base systems
-- [Function Pointers in C](https://www.tutorialspoint.com/cprogramming/c_function_pointers.htm) - Alternative design pattern
-
-### Related 42 Projects
-- `libft` - Foundation library providing helper functions used by ft_printf
-
-## Technical Choices
-
-### Why `write()` instead of `putchar()`?
-Using the `write()` system call provides:
-- Direct control over the file descriptor (stderr, stdout, etc.)
-- Better performance for bulk operations
-- Consistency with low-level I/O operations
-
-### Why a single `ft_putnbr_base()` function?
-Rather than implementing separate functions for decimal, hex, and octal conversion, a generic base conversion function:
-- Reduces code duplication
-- Makes the codebase more maintainable
-- Demonstrates generic programming in C
-
-## AI Usage
-
-AI assistance was utilized for the following aspects of this project:
-
-### Tasks Using AI:
-1. **README Documentation Structure** - AI helped organize and format the README.md according to the 42 curriculum requirements, including the proper markdown syntax and section organization.
-
-2. **Algorithm Explanation** - AI assisted in articulating the technical implementation details and creating clear data flow diagrams to illustrate how the components interact.
-
-3. **Code Review and Comments** - AI provided feedback on code clarity and helped ensure consistent documentation practices throughout the codebase.
-
-### Parts of the Project Using AI:
-- **This README.md file** - Entirely structured and written with AI assistance for clarity and completeness
-- **Documentation comments** - AI helped verify the accuracy of inline documentation
-- **Testing methodology** - AI suggested test cases and validation approaches
-
-### Parts Developed Independently:
-- Core algorithm implementation (`ft_printf.c`, `ft_putnbr_base.c`)
-- Makefile creation
-- Integration with libft library
-- Debugging and optimization
-
-## Project Structure
-
-```
-.
-├── ft_printf.c          # Main implementation with variadic function
-├── ft_printf.h          # Header file with function declarations
-├── ft_putnbr_base.c     # Generic base conversion utility
-├── Makefile             # Build configuration
-├── test.c               # Test cases (reference)
-├── libft/               # Dependency: 42 standard library
-└── README.md            # This file
-```
-
-## Compilation Requirements
-
-- GCC or compatible C compiler
-- POSIX-compliant system (Linux, macOS, etc.)
-- Standard C library headers (`stdarg.h`, `unistd.h`, `stdlib.h`)
-- libft static library (included as dependency)
-
-## License
-
-This project is part of the 42 curriculum and is provided as educational material.
+I used AI tools primarily for debugging  issues and correcting implementation details in the bonus `checker` program related to `get_next_line` and error handling. AI also assisted in structuring and generating content for this README file to ensure compliance with project requirements. All AI-generated content was thoroughly tested, reviewed with peers, and modified for full comprehension and responsibility.
