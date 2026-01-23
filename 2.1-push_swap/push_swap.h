@@ -45,19 +45,19 @@ void		ft_stack_push(t_d_list **src, t_d_list **dest);
 void		ft_stack_rotate(t_d_list **stack);
 void		ft_stack_reverse_rotate(t_d_list **stack);
 /*stack_cmd_a****************************************************/
-void		ft_sa(t_d_list **stack_a);
-void		ft_pa(t_d_list **stack_a, t_d_list **stack_b);
-void		ft_ra(t_d_list **stack_a);
-void		ft_rra(t_d_list **stack_a);
+void		ft_sa(t_d_list **stack_a, int is_printable);
+void		ft_pa(t_d_list **stack_a, t_d_list **stack_b, int is_printable);
+void		ft_ra(t_d_list **stack_a, int is_printable);
+void		ft_rra(t_d_list **stack_a, int is_printable);
 /*stack_cmd_b****************************************************/
-void		ft_sb(t_d_list **stack_b);
-void		ft_pb(t_d_list **stack_a, t_d_list **stack_b);
-void		ft_rb(t_d_list **stack_b);
-void		ft_rrb(t_d_list **stack_b);
+void		ft_sb(t_d_list **stack_b, int is_printable);
+void		ft_pb(t_d_list **stack_a, t_d_list **stack_b, int is_printable);
+void		ft_rb(t_d_list **stack_b, int is_printable);
+void		ft_rrb(t_d_list **stack_b, int is_printable);
 /*stack_cmd_c***************************************************/
-void		ft_ss(t_d_list **stack_a, t_d_list **stack_b);
-void		ft_rr(t_d_list **stack_a, t_d_list **stack_b);
-void		ft_rrr(t_d_list **stack_a, t_d_list **stack_b);
+void		ft_ss(t_d_list **stack_a, t_d_list **stack_b, int is_printable);
+void		ft_rr(t_d_list **stack_a, t_d_list **stack_b, int is_printable);
+void		ft_rrr(t_d_list **stack_a, t_d_list **stack_b, int is_printable);
 /*stack_sort_algo****************************************************/
 int			ft_sort_stack(t_d_list **stack_a, t_d_list **stack_b);
 void		ft_sort_three(t_d_list **stack);

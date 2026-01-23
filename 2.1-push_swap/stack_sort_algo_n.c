@@ -39,11 +39,11 @@ void	ft_push_non_lis(t_d_list **stack_a, t_d_list **stack_b, int size,
 		elem = (t_element *)(*stack_a)->content;
 		if (elem->lis_mask == 0)
 		{
-			ft_pb(stack_a, stack_b);
+			ft_pb(stack_a, stack_b, 1);
 			pushed++;
 		}
 		else
-			ft_ra(stack_a);
+			ft_ra(stack_a, 1);
 	}
 }
 
@@ -76,11 +76,13 @@ void	ft_final_rotate(t_d_list **stack_a)
 	if (min_pos <= size_a / 2)
 	{
 		while (min_pos-- > 0)
-			ft_ra(stack_a);
+			if (!ft_is_sorted(*stack_a))
+				ft_ra(stack_a, 1);
 	}
 	else
 	{
 		while (size_a - min_pos++ > 0)
-			ft_rra(stack_a);
+			if (!ft_is_sorted(*stack_a))
+				ft_rra(stack_a, 1);
 	}
 }

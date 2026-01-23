@@ -11,6 +11,13 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
+static void	ft_error_exit(t_d_list **stack)
+{
+	free_stack(stack);
+	write(2, "Error\n", 6);
+	exit(1);
+}
+
 int	main(int argc, char **argv)
 {
 	t_d_list	*stack_a;
@@ -20,19 +27,20 @@ int	main(int argc, char **argv)
 	stack_a = NULL;
 	stack_b = NULL;
 	i = 1;
-	if (argc == 2)
+	if (argc < 2)
+		return (0);
+	while (i < argc)
 	{
-		if (!ft_proccess_arg_split(argv[1], &stack_a))
-			return (ft_printf("Error\n") != 0);
-	}
-	else if (argc > 2)
-	{
-		while (i++ < argc - 1)
+		if (ft_strchr(argv[i], ' '))
+		{
+			if (!ft_proccess_arg_split(argv[i], &stack_a))
+				ft_error_exit(&stack_a);
+		}
+		else
 			if (!ft_process_arg(argv[i], &stack_a))
-				return (free_stack(&stack_a), ft_printf("Error\n"), 1);
+				ft_error_exit(&stack_a);
+		i++;
 	}
-	else
-		return (ft_printf("Error\n") != 0);
 	ft_list_print(stack_a, DEBUG, "Initial Stack A:");
 	ft_list_print(stack_b, DEBUG, "Initial Stack B:");
 	return (ft_sort_stack(&stack_a, &stack_b));

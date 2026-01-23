@@ -35,7 +35,7 @@ libft:
 
 bonus:$(OBJS_BONUS) $(libft)
 	make -C libft
-	$(CC) $(CFLAGS)  checker.c $^ $(LIBFT_LIB) -o checker
+	$(CC) $(CFLAGS)  checker_bonus.c $^ $(LIBFT_LIB) -o checker
 
 clean:
 	rm -f $(OBJS)

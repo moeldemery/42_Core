@@ -68,27 +68,27 @@ void	ft_do_check(t_d_list **stack_a, t_d_list **stack_b)
 int	ft_execute_action(char *cmd, t_d_list **stack_a, t_d_list **stack_b)
 {
 	if (!ft_strncmp("pa\n", cmd, 3))
-		ft_pa(stack_a, stack_b);
+		ft_pa(stack_a, stack_b, 0);
 	else if (!ft_strncmp("pb\n", cmd, 3))
-		ft_pb(stack_a, stack_b);
+		ft_pb(stack_a, stack_b, 0);
 	else if (!ft_strncmp("sa\n", cmd, 3))
-		ft_sa(stack_a);
+		ft_sa(stack_a, 0);
 	else if (!ft_strncmp("sb\n", cmd, 3))
-		ft_sb(stack_b);
+		ft_sb(stack_b, 0);
 	else if (!ft_strncmp("ss\n", cmd, 3))
-		ft_ss(stack_a, stack_b);
+		ft_ss(stack_a, stack_b, 0);
 	else if (!ft_strncmp("ra\n", cmd, 3))
-		ft_ra(stack_a);
+		ft_ra(stack_a, 0);
 	else if (!ft_strncmp("rb\n", cmd, 3))
-		ft_rb(stack_b);
+		ft_rb(stack_b, 0);
 	else if (!ft_strncmp("rr\n", cmd, 3))
-		ft_rr(stack_a, stack_b);
+		ft_rr(stack_a, stack_b, 0);
 	else if (!ft_strncmp("rra\n", cmd, 4))
-		ft_rra(stack_a);
+		ft_rra(stack_a, 0);
 	else if (!ft_strncmp("rrb\n", cmd, 4))
-		ft_rrb(stack_b);
+		ft_rrb(stack_b, 0);
 	else if (!ft_strncmp("rrr\n", cmd, 4))
-		ft_rrr(stack_a, stack_b);
+		ft_rrr(stack_a, stack_b, 0);
 	else
 		return (0);
 	return (1);

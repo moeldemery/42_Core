@@ -14,29 +14,29 @@
 
 void	ft_sort_three(t_d_list **stack)
 {
-	int			first;
-	int			second;
-	int			third;
+	int	first;
+	int	second;
+	int	third;
 
 	first = ((t_element *)(*stack)->content)->value;
 	second = ((t_element *)(*stack)->next->content)->value;
 	third = ((t_element *)(*stack)->next->next->content)->value;
 	if (first > second && second < third && first < third)
-		ft_sa(stack);
+		ft_sa(stack, 1);
 	else if (first > second && second > third)
 	{
-		ft_sa(stack);
-		ft_rra(stack);
+		ft_sa(stack, 1);
+		ft_rra(stack, 1);
 	}
 	else if (first > second && second < third && first > third)
-		ft_ra(stack);
+		ft_ra(stack, 1);
 	else if (first < second && second > third && first < third)
 	{
-		ft_sa(stack);
-		ft_ra(stack);
+		ft_sa(stack, 1);
+		ft_ra(stack, 1);
 	}
 	else if (first < second && second > third && first > third)
-		ft_ra(stack);
+		ft_rra(stack, 1);
 }
 
 void	ft_sort_four(t_d_list **stack_a, t_d_list **stack_b)
@@ -47,17 +47,17 @@ void	ft_sort_four(t_d_list **stack_a, t_d_list **stack_b)
 		return ;
 	pos = ft_find_min(*stack_a, DEBUG);
 	if (pos == 1)
-		ft_ra(stack_a);
+		ft_ra(stack_a, 1);
 	else if (pos == 2)
 	{
-		ft_ra(stack_a);
-		ft_ra(stack_a);
+		ft_ra(stack_a, 1);
+		ft_ra(stack_a, 1);
 	}
 	else if (pos == 3)
-		ft_rra(stack_a);
-	ft_pb(stack_a, stack_b);
+		ft_rra(stack_a, 1);
+	ft_pb(stack_a, stack_b, 1);
 	ft_sort_three(stack_a);
-	ft_pa(stack_a, stack_b);
+	ft_pa(stack_a, stack_b, 1);
 }
 
 void	ft_sort_five(t_d_list **stack_a, t_d_list **stack_b)
@@ -68,22 +68,22 @@ void	ft_sort_five(t_d_list **stack_a, t_d_list **stack_b)
 		return ;
 	pos = ft_find_min(*stack_a, DEBUG);
 	if (pos == 1)
-		ft_ra(stack_a);
+		ft_ra(stack_a, 1);
 	else if (pos == 2)
 	{
-		ft_ra(stack_a);
-		ft_ra(stack_a);
+		ft_ra(stack_a, 1);
+		ft_ra(stack_a, 1);
 	}
 	else if (pos == 3)
 	{
-		ft_rra(stack_a);
-		ft_rra(stack_a);
+		ft_rra(stack_a, 1);
+		ft_rra(stack_a, 1);
 	}
 	else if (pos == 4)
-		ft_rra(stack_a);
-	ft_pb(stack_a, stack_b);
+		ft_rra(stack_a, 1);
+	ft_pb(stack_a, stack_b, 1);
 	ft_sort_four(stack_a, stack_b);
-	ft_pa(stack_a, stack_b);
+	ft_pa(stack_a, stack_b, 1);
 }
 
 void	ft_sort_n(t_d_list **stack_a, t_d_list **stack_b, int size)
@@ -105,11 +105,13 @@ int	ft_sort_stack(t_d_list **stack_a, t_d_list **stack_b)
 
 	size = ft_lstd_size(*stack_a);
 	if (size <= 1 || ft_is_sorted(*stack_a))
-		return (0);
+		write(1, "\n", 0);
 	else if (size == 2)
 	{
 		if (*(int *)(*stack_a)->content > *(int *)(*stack_a)->next->content)
-			ft_sa(stack_a);
+			ft_sa(stack_a, 1);
+		else
+			write(1, "\n", 1);
 	}
 	else if (size == 3)
 		ft_sort_three(stack_a);
