@@ -8,8 +8,8 @@ class Plant:
     def ft_get_info(self):
         print(f"{self.name}: {self.height}cm, {self.current_age} days old")
 
-    def grow(self):
-        self.height += 1
+    def grow(self, cm: int = 1) -> None:
+        self.height += cm
 
     def age(self):
         self.current_age += 1
