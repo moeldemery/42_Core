@@ -2,13 +2,11 @@
 
 class Plant:
     def __init__(self, name: str, height: int, age: int) -> None:
-        """Initialize plant attributes."""
         self.name = name
         self.height = height
         self.age = age
 
     def display_info(self) -> None:
-        """Prints the plant details in a formatted string."""
         print(f"{self.name}: {self.height}cm, {self.age} days old")
 
 

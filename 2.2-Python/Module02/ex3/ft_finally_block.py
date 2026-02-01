@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
-def water_plants(plant_list):
+def water_plants(plant_list: list[str]) -> None:
     try:
         print("Opening watering system")
         for plant in plant_list:
-            if (plant is None or plant == "" or
+            if (plant is None or plant.strip() == "" or
                plant.__class__.__name__ != "str"):
                 raise Exception(f"Cannot water {plant} - invalid plant!")
             print(f"Watering {plant}")
@@ -23,7 +23,7 @@ def test_watering_system() -> None:
     print("Watering completed successfully!")
 
     print("\nTesting with error...")
-    water_plants(["tomato", None, "carrots"])
+    water_plants(["tomato", "", "carrots"])
     print("\nCleanup always happens, even with errors!")
 
 

@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 class Plant:
-    def __init__(self, name:str, height:int, age:int):
+    def __init__(self, name: str, height: int, age: int) -> None:
         self.name = name
         self.height = height
         self.current_age = age
-        self.ft_get_info()
+        self._created_print()
 
-    def ft_get_info(self):
-        print(f"Created: {self.name} ({self.height}cm, {self.current_age} days)")
+    def _created_print(self) -> None:
+        print(f"Created: {self.name} "
+              f"({self.height}cm, {self.current_age} days)")
+
 
 if __name__ == "__main__":
     print("=== Plant Factory Output ===")
@@ -18,5 +20,4 @@ if __name__ == "__main__":
         Plant("Sunflower", 80, 45),
         Plant("Fern", 15, 120)
     ]
-    print(f"Total plants created: {len(plants)}")
-    
+    print(f"\nTotal plants created: {len(plants)}")

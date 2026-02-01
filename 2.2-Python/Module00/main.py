@@ -25,10 +25,8 @@ def test_ft_exercise(exercise_file_name):
     - Call the function ft_plot_area() inside it
     """
     print(f"\n=== Testing {exercise_file_name} ===")
-    
     # 1. Convert "ex0/ft_hello_garden" to "ex0.ft_hello_garden"
     module_name = exercise_file_name.replace("/", ".")
-    
     # 2. Get the actual function name (the part after the last slash)
     # This turns "ex0/ft_hello_garden" into "ft_hello_garden"
     function_name = exercise_file_name.split("/")[-1]
@@ -37,8 +35,6 @@ def test_ft_exercise(exercise_file_name):
         # Import your exercise file
         # This is like doing: import ft_plot_area
         ft_module = importlib.import_module(module_name)
-
-
         # Get the function from your file
         # This is like doing: ft_plot_area.ft_plot_area
         ft_function = getattr(ft_module, function_name)
@@ -61,7 +57,7 @@ def test_ft_exercise(exercise_file_name):
             ft_function()
 
     except ModuleNotFoundError:
-        print(f"❌ Could not find {exercise_path}.py")
+        print(f"❌ Could not find {exercise_file_name}.py")
 
     except ImportError:
         print(f"❌ Could not find {exercise_file_name}.py")

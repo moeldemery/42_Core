@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
 
 class GardenError(Exception):
-    def __init__(self, message):
+    def __init__(self, message: str) -> None:
         self.message = message
         super().__init__(self.message)
 
 
 class PlantError(GardenError):
-    def __init__(self, message):
+    def __init__(self, message: str) -> None:
         self.message = message
         super().__init__(self.message)
 
 
 class WaterError(GardenError):
-    def __init__(self, message):
+    def __init__(self, message: str) -> None:
         self.message = message
         super().__init__(self.message)
 
