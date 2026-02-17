@@ -12,7 +12,7 @@ def event_generator(count: int) -> Generator[dict[str, str | int], None, None]:
             "id": i,
             "player": players_names[(i * 3) % len(players_names)],
             "event_type": event_types[(i * 11) % len(event_types)],
-            "level": ((i * 7) % 24) + 1,
+            "level": ((i * 7) % 20) + 1,
         }
 
 
@@ -29,13 +29,11 @@ def prime_gen(n: int) -> Generator[int, None, None]:
     """Generates the first n Prime numbers."""
     count: int = 0
     num: int = 2
-    is_prime: bool = True
 
     while count < n:
         is_prime = True
         for i in range(2, int(num**0.5) + 1):
             if num % i == 0:
-                is_prime = False
                 break
         if is_prime:
             yield num

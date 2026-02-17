@@ -30,14 +30,14 @@ def run_dashboard() -> None:
     print("=== Game Analytics Dashboard ===\n")
     print("=== List Comprehension Examples ===")
     high_scorers: list[str] = [
-        str(p["name"]) for p in players_data
-        if p["score"] > 2000
+        str(p.get("name", "")) for p in players_data
+        if p.get("score", 0) > 2000
     ]
     double_score: list[int] = [
-        int(p["score"]) * 2 for p in players_data
+        int(p.get("score", 0)) * 2 for p in players_data
     ]
     active_players: list[str] = [
-        str(p["name"]) for p in players_data
+        str(p.get("name", "")) for p in players_data
     ]
 
     print(f"High scorers (>2000): {high_scorers}")
@@ -46,27 +46,27 @@ def run_dashboard() -> None:
 
     print("\n=== Dict Comprehension Examples ===")
     score_map: dict[str, int] = {
-        str(p["name"]): int(p["score"])
+        str(p.get("name", "")): int(p.get("score", 0))
         for p in players_data
     }
     achieve_map: dict[str, int] = {
-        str(p["name"]): len(p["achievements"])
+        str(p.get("name", "")): len(p.get("achievements", []))
         for p in players_data
     }
     score_categories: dict[str, int] = {
-        "high": sum(1 for p in players_data if int(p["score"]) >= 2000),
+        "high": sum(1 for p in players_data if int(p.get("score", 0)) >= 2000),
         "medium": sum(1 for p in players_data
-                      if 1000 <= int(p["score"]) < 2000),
-        "low": sum(1 for p in players_data if int(p["score"]) < 1000)
+                      if 1000 <= int(p.get("score", 0)) < 2000),
+        "low": sum(1 for p in players_data if int(p.get("score", 0)) < 1000)
     }
     print(f"Player scores: {score_map}")
     print(f"Score categories: {score_categories}")
     print(f"Achievement counts: {achieve_map}")
 
     print("\n=== Set Comprehension Examples ===")
-    unique_player: set[str] = {p["name"] for p in players_data}
+    unique_player: set[str] = {p.get("name", "") for p in players_data}
     unique_achieve: set[str] = {
-        ach for p in players_data for ach in p["achievements"]}
+        ach for p in players_data for ach in p.get("achievements", [])}
     active_regions: set[str] = {r for r in regions}
     print(f"Unique players: {unique_player}")
     print(f"Unique achievements: {unique_achieve}")

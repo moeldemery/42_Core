@@ -3,11 +3,11 @@
 
 def ft_ancient_text(file_name: str) -> None:
     """
-    This function attempts to establish a connection to a text-based storage 
-    unit, retrieves all preserved data fragments, and displays them to the 
-    system console. It handles potential access errors if the vault is 
+    This function attempts to establish a connection to a text-based storage
+    unit, retrieves all preserved data fragments, and displays them to the
+    system console. It handles potential access errors if the vault is
     missing or corrupted.
-    
+
     :param file_name: Description
     :type file_name: str
     """
@@ -31,6 +31,7 @@ def ft_ancient_text(file_name: str) -> None:
     finally:
         if fd:
             fd.close()
+
 
 if __name__ == "__main__":
     ft_ancient_text("ancient_fragment.txt")

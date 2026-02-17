@@ -18,18 +18,18 @@ if __name__ == "__main__":
             except ValueError:
                 print(f"oops, I typed '{sys.argv[i]}' instead of ’1000’")
             i += 1
-    if len(scores) > 0:
-        total_players: int = len(scores)
-        total_score: int = sum(scores)
-        high_score: int = max(scores)
-        low_score: int = min(scores)
-        score_range: int = high_score - low_score
-        average_score: float = total_score / total_players
+        if len(scores) > 0:
+            total_players: int = len(scores)
+            total_score: int = sum(scores)
+            high_score: int = max(scores)
+            low_score: int = min(scores)
+            score_range: int = high_score - low_score
+            average_score: float = total_score / total_players
 
-        print(f"Scores processed: {scores}")
-        print(f"Total players: {total_players}")
-        print(f"Total score: {total_score}")
-        print(f"Average score: {average_score}")
-        print(f"High score: {high_score}")
-        print(f"Low score: {low_score}")
-        print(f"Score range: {score_range}")
+            print(f"Scores processed: {scores}")
+            print(f"Total players: {total_players}")
+            print(f"Total score: {total_score}")
+            print(f"Average score: {average_score}")
+            print(f"High score: {high_score}")
+            print(f"Low score: {low_score}")
+            print(f"Score range: {score_range}")

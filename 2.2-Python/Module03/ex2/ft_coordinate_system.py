@@ -23,13 +23,16 @@ def create_point(x: int, y: int, z: int) -> tuple[int, int, int]:
 def parse_point(coord_str: str) -> tuple[int, int, int] | None:
     try:
         parts = coord_str.split(",")
+        if len(parts) != 3:
+            raise ValueError("not enough values to unpack")
+
         x = int(parts[0])
         y = int(parts[1])
         z = int(parts[2])
         point: tuple[int, int, int] = (x, y, z)
-        print(f"Position created: {point}")
+        print(f"Parsed position: {point}")
         return point
-    except ValueError as e:
+    except (ValueError, IndexError) as e:
         print(f"Error parsing coordinates: {e}")
         print(f"Error details - Type: {type(e).__name__}, Args: {e.args}")
         return None
@@ -37,18 +40,18 @@ def parse_point(coord_str: str) -> tuple[int, int, int] | None:
 
 if __name__ == "__main__":
     print("=== Game Coordinate System ===\n")
-    p1 = create_point(10, 20, 5)
+    p1: tuple[int, int, int] = create_point(10, 20, 5)
     calc_3d_dist((0, 0, 0), p1)
 
     coord_input = "3,4,0"
     print(f"\nParsing coordinates: \"{coord_input}\"")
-    p2 = parse_point(coord_input)
+    p2: tuple[int, int, int] | None = parse_point(coord_input)
     if p2:
         calc_3d_dist((0, 0, 0), p2)
 
     invalid_input = "abc,def,ghi"
     print(f"\nParsing invalid coordinates: \"{invalid_input}\"")
-    p3 = parse_point(invalid_input)
+    p3: tuple[int, int, int] | None = parse_point(invalid_input)
 
     if p2:
         print("\nUnpacking demonstration:")

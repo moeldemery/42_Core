@@ -33,4 +33,3 @@ if __name__ == "__main__":
     print(f"\nAlice vs Bob common: {alice.intersection(bob)}")
     print(f"Alice unique: {alice.difference(bob)}")
     print(f"Bob unique: {bob.difference(alice)}")
-    rare_alice = alice.difference(bob.union(charlie))
