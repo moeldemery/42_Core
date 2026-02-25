@@ -38,7 +38,7 @@ class SensorStream(DataStream):
                      for s in data_batch if "temp" in str(s)]
             avg = sum(temps) / len(temps) if temps else 0.0
             return (f"Sensor analysis: {len(data_batch)} readings processed," +
-                   f" avg temp: {avg:.1f}°C")
+                    f" avg temp: {avg:.1f}°C")
         except Exception as e:
             return f"Sensor Error: {e}"
 
@@ -66,9 +66,9 @@ class TransactionStream(DataStream):
                     net_flow += int(val) if action == "buy" else -int(val)
             if net_flow > 0:
                 return (f"Transaction stream processed {len(data_batch)} " +
-                    f"operations, net flow: +{net_flow} units")
+                        f"operations, net flow: +{net_flow} units")
             return (f"Transaction stream processed {len(data_batch)} " +
-                f"operations, net flow: {net_flow} units")
+                    f"operations, net flow: {net_flow} units")
         except Exception as e:
             return f"Transaction Error: {e}"
 
@@ -92,7 +92,7 @@ class EventStream(DataStream):
             if "error" in str(event).lower():
                 error_cnt += 1
         return (f"Event analysis: {len(data_batch)} events," +
-            f" {error_cnt} error(s) detected")
+                f" {error_cnt} error(s) detected")
 
 
 class StreamProcessor:

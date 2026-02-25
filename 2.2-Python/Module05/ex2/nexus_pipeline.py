@@ -219,7 +219,7 @@ def nexus_pipeline() -> None:
     result = manger.process_chained(raw_data, chain)
 
     manger.monitor(
-        start_time=0.0, end_time=0.2, record_count=100,
+        start_time=0.0, end_time=0.2, record_count=len(result),
         chain_len=len(chain)
     )
 
