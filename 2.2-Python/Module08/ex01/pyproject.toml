@@ -2,8 +2,7 @@
 name = "matrix-loading"
 version = "1.0.0"
 description = "Exercise 01 - Loading Programs: Matrix data analysis tool"
-authors = ["Zion Resistance <resistance@zion.net>"]
-readme = "README.md"
+authors = ["meldemir <meldemir@student.42berlin.de>"]
 packages = []
 
 [tool.poetry.dependencies]

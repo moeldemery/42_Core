@@ -9,11 +9,15 @@ if len(sys.argv) != 2:
     print(f"Usage: python3 {sys.argv[0]} <output_file>")
     sys.exit(1)
 
-g = []
-for line in open(sys.argv[1]):
-    if line.strip() == '':
-        break
-    g.append([int(c, 16) for c in line.strip(' \t\n\r')])
+g: list[list[int]] = []
+with open(sys.argv[1]) as f:
+    for line in f:
+        if line.strip() == '':
+            break
+        g.append([int(ch, 16) for ch in line.strip(' \t\n\r')])
+
+if not g:
+    sys.exit(0)
 
 for r in range(len(g)):
     for c in range(len(g[0])):

@@ -3,15 +3,17 @@ import sys
 import os
 import site
 
+
 def is_virtual_env() -> bool:
     """Check if the script is running inside a virtual environment."""
     # sys.prefix != sys.base_prefix is the standard check for venv
     return sys.prefix != sys.base_prefix
 
 
-
 def display_outside_venv() -> None:
-    """Display information and instructions when not in a virtual environment."""
+    """Display information and instructions when
+    not in a virtual environment."""
+
     print("MATRIX STATUS: You're still plugged in")
     print()
     print(f"Current Python: {sys.executable}")
@@ -35,9 +37,11 @@ def get_virtual_env_name() -> str:
         return os.path.basename(venv_path)
     return ""
 
+
 def get_virtual_env_path() -> str:
     """Return the full path to the virtual environment."""
     return os.environ.get("VIRTUAL_ENV", "")
+
 
 def get_site_packages_path() -> str:
     """Return the site-packages directory for the current environment."""
@@ -47,9 +51,10 @@ def get_site_packages_path() -> str:
     except AttributeError:
         return site.getusersitepackages()
 
+
 def display_inside_venv() -> None:
     """Display information when running inside a virtual environment."""
-    
+
     env_name = get_virtual_env_name()
     env_path = get_virtual_env_path()
     site_packages = get_site_packages_path()
@@ -74,6 +79,7 @@ def main() -> None:
         display_inside_venv()
     else:
         display_outside_venv()
+
 
 if __name__ == "__main__":
     main()

@@ -1,6 +1,21 @@
-WIDTH=1
-HEIGHT=1
-ENTRY=0,0
-EXIT=19,14
-OUTPUT_FILE=maze.txt
-PERFECT=True
+########   MANDATORY   ########
+WIDTH = 40
+HEIGHT = 10
+ENTRY = 0,0
+EXIT = 34,0
+OUTPUT_FILE = maze.txt
+PERFECT = True
+
+########   OPTIONAL   ########
+#### allowed ("backtracker", "prim", "kruskal")
+ALGORITHM = backtracker
+SEED = 42
+
+
+########   EXTRA   ########
+# SHOW_PATTERN = True
+# PATTERN_COLOUR = cyan
+# FLOW_COLOUR = green 
+# WALL_COLOUR = red
+
+

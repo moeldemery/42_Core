@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from ex0.Card import Card
+from random import shuffle
 
 
 class Deck:
@@ -17,7 +18,7 @@ class Deck:
         return False
 
     def shuffle(self) -> None:
-        pass
+        shuffle(self.card_list)
 
     def draw_card(self) -> Card:
         if self.card_list:

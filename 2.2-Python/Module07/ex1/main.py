@@ -41,7 +41,7 @@ def main() -> None:
     )
 
     print(f"Deck stats: {my_deck.get_deck_stats()}")
-
+    my_deck.shuffle()
     game_status: dict = {
         "mana": 12
     }

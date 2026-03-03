@@ -1,45 +1,53 @@
-
 import os
 import sys
 
+
 # Attempt to load python-dotenv; gracefully handle if not installed
 try:
-    from dotenv import load_dotenv
+    from dotenv import load_dotenv  # type: ignore
+
     DOTENV_AVAILABLE = True
 except ImportError:
     DOTENV_AVAILABLE = False
 
+
 def load_environment() -> bool:
     """
     Load environment variables from a .env file using python-dotenv.
-    
-    load_dotenv(...): 
-    This function searches for a .env file, reads its key-value pairs, and adds them to os.environ so your app can use them.
-    
-    dotenv_path=env_file: 
-    Tells the function exactly where to find the file. By default, it looks for a file named .env in the current folder, but here it uses the path stored in the variable env_file.
-    
-    override=False: 
-    Determines what happens if a variable (e.g., PORT) already exists in your system's environment:
-        False (Default): Existing system variables are not overwritten by values in the file.
+
+    load_dotenv(...):
+    This function searches for a .env file, reads its key-value pairs,
+    and adds them to os.environ so your app can use them.
+
+    dotenv_path=env_file:
+    Tells the function exactly where to find the file. By default, it
+    looks for a file named .env in the current folder, but here it uses
+    the path stored in the variable env_file.
+
+    override=False:
+    Determines what happens if a variable (e.g., PORT) already exists
+    in your system's environment:
+        False (Default): Existing system variables are not overwritten
+            by values in the file.
         True: Values in the .env file will replace existing system variables.
 
     Returns:
-    
-    loaded = ...: 
+
+    loaded = ...:
         The function returns a Boolean (True/False).
         True: The file was found and at least one variable was set.
         False: The file was not found or no variables were loaded
     """
-    
+
     if not DOTENV_AVAILABLE:
         print("WARNING: python-dotenv is not installed.")
         print("  Install it with: pip install python-dotenv")
         print("  Or with Poetry: poetry add python-dotenv")
         return False
-    env_file = os.path.join(os.path.dirname(__file__), ".env.example")
+    env_file = os.path.join(os.path.dirname(__file__), ".env")
     loaded = load_dotenv(dotenv_path=env_file, override=False)
     return loaded
+
 
 def get_config() -> dict[str, str]:
     """
@@ -47,7 +55,7 @@ def get_config() -> dict[str, str]:
 
     Returns a dict with each variable's value (or a default/placeholder).
     """
-    
+
     config = {
         "MATRIX_MODE": os.environ.get("MATRIX_MODE", "development"),
         "DATABASE_URL": os.environ.get("DATABASE_URL", ""),
@@ -56,6 +64,7 @@ def get_config() -> dict[str, str]:
         "URL_ENDPOINT": os.environ.get("URL_ENDPOINT", ""),
     }
     return config
+
 
 def display_config(config: dict[str, str], env_loaded: bool) -> None:
     """Print the loaded configuration to stdout."""
@@ -72,7 +81,7 @@ def display_config(config: dict[str, str], env_loaded: bool) -> None:
     # Database: show connection without credentials
     db = config["DATABASE_URL"]
     if db:
-        # Strip password from URL for display (e.g. postgres://user:pass@host/db)
+        # Strip password from URL for display(e.g postgres://user:pass@host/db)
         try:
             protocol, rest = db.split("://", 1)
             if "@" in rest:
@@ -80,7 +89,7 @@ def display_config(config: dict[str, str], env_loaded: bool) -> None:
             else:
                 connection_info = rest
             display_db = f"{protocol}://{connection_info}"
-        
+
         except Exception:
             display_db = "Connected (details hidden)"
         print(f"  Database:         Connected to {display_db}")
@@ -94,7 +103,8 @@ def display_config(config: dict[str, str], env_loaded: bool) -> None:
     zion = config["URL_ENDPOINT"]
     zion_status = f"Online ({zion})" if zion else "Offline (not configured)"
     print(f"  Zion Network:     {zion_status}")
-    
+
+
 def validate_config(config: dict[str, str]) -> list[str]:
     """
     Validate that all required configuration variables are set.
@@ -105,6 +115,7 @@ def validate_config(config: dict[str, str]) -> list[str]:
     required = ["DATABASE_URL", "API_KEY", "URL_ENDPOINT"]
     missing = [key for key in required if not config.get(key)]
     return missing
+
 
 def display_security_check(config: dict[str, str], env_loaded: bool) -> None:
     """Run and display security checks on the current configuration."""
@@ -122,21 +133,24 @@ def display_security_check(config: dict[str, str], env_loaded: bool) -> None:
         if not os.path.exists(env_path):
             print("  [WARN] .env file not found - copy .env.example to .env")
         else:
-            print("  [WARN] .env file found but python-dotenv is not installed")
+            print("  [WARN] .env file found but python-dotenv isnot installed")
 
     # Check 3: production overrides
     mode = config.get("MATRIX_MODE", "development")
     if mode == "production":
         print("  [OK] Running in production mode")
     else:
-        print("  [OK] Production overrides available via environment variables")
+        print("  [OK] Production overrides available "
+              "via environment variables")
+
 
 def display_mode_info(config: dict[str, str]) -> None:
     """Show mode-specific guidance."""
     mode = config.get("MATRIX_MODE", "development")
     print()
     if mode == "production":
-        print("PRODUCTION MODE: All secrets must come from environment variables.")
+        print("PRODUCTION MODE: All secrets must come "
+              "from environment variables.")
         print("  Do NOT use .env files in production deployments.")
     else:
         print("DEVELOPMENT MODE: Using .env file for local configuration.")

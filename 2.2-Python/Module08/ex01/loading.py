@@ -1,8 +1,13 @@
-
 import sys
 import importlib
 
-def check_dependency(package_name: str, import_name: str = "") -> tuple[bool, str]:
+import pandas as pd  # type: ignore
+
+
+def check_dependency(
+        package_name: str,
+        import_name: str = ""
+        ) -> tuple[bool, str]:
     """
     Check if a package is installed and return its version.
 
@@ -21,6 +26,7 @@ def check_dependency(package_name: str, import_name: str = "") -> tuple[bool, st
     except ImportError:
         return False, ""
 
+
 def check_all_dependencies() -> dict[str, tuple[bool, str]]:
     """Check all required dependencies and return their status."""
     dependencies = {
@@ -33,6 +39,7 @@ def check_all_dependencies() -> dict[str, tuple[bool, str]]:
         available, version = check_dependency(pkg, imp)
         results[pkg] = (available, version)
     return results
+
 
 def display_dependency_status(results: dict[str, tuple[bool, str]]) -> bool:
     """
@@ -69,10 +76,10 @@ def display_dependency_status(results: dict[str, tuple[bool, str]]) -> bool:
     return all_ok
 
 
-def generate_matrix_data() -> "pandas.DataFrame":  # type: ignore[name-defined]
+def generate_matrix_data() -> "pd.DataFrame":
     """Generate simulated Matrix resistance data using numpy and pandas."""
-    import numpy as np
-    import pandas as pd
+    import numpy as np  # type: ignore
+    import pandas as pd  # type: ignore
 
     np.random.seed(42)
     n = 1000
@@ -97,7 +104,10 @@ def generate_matrix_data() -> "pandas.DataFrame":  # type: ignore[name-defined]
     )
     return df
 
-def analyze_data(df: "pandas.DataFrame") -> dict:  # type: ignore[name-defined]
+
+def analyze_data(
+        df: "pd.DataFrame"  # type: ignore
+        ) -> dict:
     """Compute basic statistics on the Matrix data."""
     import numpy as np
 
@@ -109,21 +119,32 @@ def analyze_data(df: "pandas.DataFrame") -> dict:  # type: ignore[name-defined]
     }
     return stats
 
-def generate_visualization(df: "pandas.DataFrame", output_path: str) -> None:  # type: ignore[name-defined]
+
+def generate_visualization(
+        df: "pd.DataFrame",  # type: ignore
+        output_path: str
+        ) -> None:
     """Create and save a visualization of the Matrix data."""
     import matplotlib.pyplot as plt
 
-    fig, axes = plt.subplots(nrows= 2, ncols=1, figsize=(12, 8))
-    fig.suptitle("Matrix Signal Analysis - sender Resistance Report", fontsize=14)
+    fig, axes = plt.subplots(nrows=2, ncols=1, figsize=(12, 8))
+    fig.suptitle("Matrix Signal Analysis - sender Resistance Report",
+                 fontsize=14)
 
     # Top plot: signals over time
     axes[0].plot(
-        df["time"], df["signal_sender"],
-        label="sender Signal", color="#00fd22", linewidth=0.5
+        df["time"],
+        df["signal_sender"],
+        label="sender Signal",
+        color="#00fd22",
+        linewidth=0.5,
     )
     axes[0].plot(
-        df["time"], df["signal_machines"],
-        label="Machine Signal", color="#fa0000", linewidth=0.5,
+        df["time"],
+        df["signal_machines"],
+        label="Machine Signal",
+        color="#fa0000",
+        linewidth=0.5,
     )
     axes[0].set_title("Signal Strength Over Time")
     axes[0].set_xlabel("Time Step")
@@ -134,11 +155,19 @@ def generate_visualization(df: "pandas.DataFrame", output_path: str) -> None:  #
 
     # Bottom plot: anomaly detection
     axes[1].plot(
-        df["time"], df["anomaly_detected"],
-        color="#fcf700", linewidth=0.8, label="Anomaly Signal"
+        df["time"],
+        df["anomaly_detected"],
+        color="#fcf700",
+        linewidth=0.8,
+        label="Anomaly Signal",
     )
-    axes[1].axhspan(140, df["anomaly_detected"].max() + 5,
-                    alpha=0.2, color="red", label="Anomaly Zone")
+    axes[1].axhspan(
+        140,
+        df["anomaly_detected"].max() + 5,
+        alpha=0.2,
+        color="red",
+        label="Anomaly Zone",
+    )
     axes[1].set_title("Anomaly Detection")
     axes[1].set_xlabel("Time Step")
     axes[1].set_ylabel("Signal Strength")
@@ -156,7 +185,10 @@ def generate_visualization(df: "pandas.DataFrame", output_path: str) -> None:  #
             spine.set_edgecolor("#333333")
 
     plt.tight_layout()
-    plt.savefig(output_path, dpi=150, bbox_inches="tight", facecolor=fig.get_facecolor())
+    plt.savefig(
+        output_path, dpi=150, bbox_inches="tight",
+        facecolor=fig.get_facecolor()
+    )
     plt.close()
 
 
@@ -180,6 +212,7 @@ def show_pip_vs_poetry_comparison() -> None:
     print("    - Manages its own virtual environment automatically")
     print("    - Also handles packaging and publishing")
     print("=" * 55)
+
 
 def main() -> None:
     """Main entry point: check dependencies, analyze data, generate chart."""
@@ -214,9 +247,9 @@ def main() -> None:
     except Exception as e:
         print(f"Visualization error: {e}")
         sys.exit(1)
-    
+
     show_pip_vs_poetry_comparison()
 
-    
+
 if __name__ == "__main__":
     main()
